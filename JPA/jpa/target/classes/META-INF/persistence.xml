@@ -4,7 +4,7 @@
              version="2.0">
     <persistence-unit name="jpa-demo-local" transaction-type="RESOURCE_LOCAL">
         <properties>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa_demo"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost/jpa_demo"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value="1234"/>
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
