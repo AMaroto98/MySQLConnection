@@ -33,7 +33,6 @@ public class DataBase {
             System.out.println("Statement error: " + e.getMessage());
         }
 
-
         String query = "INSERT INTO Game VALUES ('" + game.getname() + "'," + game.getyear() + ");";
 
         try {
@@ -174,5 +173,5 @@ public class DataBase {
 
             System.err.println("Close error: " + e.getMessage());
         }
-    } 
+    }
 }
