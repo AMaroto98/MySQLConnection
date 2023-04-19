@@ -32,9 +32,13 @@ A JDBC driver is a software component that provides a set of classes and methods
 In the `src` folder we can find the code to insert and delete games from the Game database.
 
 `ClearTerminal.java`: Cleans the terminal so that when we start the program there are no unwanted things on the screen.
+
 `Sleep.java`: It gives us a timeout between messages in the terminal. I use it only so that when the games of the database are shown by screen it gives time to the user to see them.
+
 `DataBase.java`: It provides connection with the database and has established the methods to insert, delete and show the games.
-`Game.java`: Class where the characteristics of the Game objects to be created are defined.`
+
+`Game.java`: Class where the characteristics of the Game objects to be created are defined.
+
 `Main.java`: File in which the main program is executed.
 
 ---
