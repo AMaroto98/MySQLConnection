@@ -7,20 +7,38 @@ import java.sql.Statement;
 
 public class DataBase {
 
-    public static void insertGame(Game game) {
-
+    public static Connection openConnection() {
+        
         String url = "jdbc:mysql://localhost/Game";
         String user = "root";
         String password = "1234";
         Connection connection = null;
 
         try {
+
             connection = DriverManager.getConnection(url, user, password);
 
         } catch (SQLException e) {
-            
+
             System.err.println("Connection error: " + e.getMessage());
         }
+
+        return connection;
+    }
+
+    public static void closeConnection(Connection connection) {
+
+        try {
+
+            connection.close();
+
+        } catch (SQLException e) {
+
+            System.err.println("Close error: " + e.getMessage());
+        }
+    }
+
+    public static Statement createStatement(Connection connection) {
 
         Statement st = null;
 
@@ -32,6 +50,16 @@ public class DataBase {
 
             System.out.println("Statement error: " + e.getMessage());
         }
+
+        return st;
+
+    }
+
+    public static void insertGame(Game game) {
+
+        Connection connection = openConnection();
+
+        Statement st = createStatement(connection);
 
         String query = "INSERT INTO Game VALUES ('" + game.getname() + "'," + game.getyear() + ");";
 
@@ -44,45 +72,15 @@ public class DataBase {
             System.out.println("ExecuteQuery error: " + e.getMessage());
         }
 
-        try {
-
-            // Cerramos la conexiones para no gastar recursos
-            connection.close();
-            st.close();
-
-        } catch (SQLException e) {
-
-            System.err.println("Close error: " + e.getMessage());
-        }
+       closeConnection(connection);
 
     }
 
     public static void deleteGame(String gameName) {
 
-        String url = "jdbc:mysql://localhost/Game";
-        String user = "root";
-        String password = "1234";
-        Connection connection = null;
+        Connection connection = openConnection();
 
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-
-        } catch (SQLException e) {
-            
-            System.err.println("Connection error: " + e.getMessage());
-        }
-
-        Statement st = null;
-
-        try {
-            
-            st = connection.createStatement();
-
-        } catch (SQLException e) {
-
-            System.out.println("Statement error: " + e.getMessage());
-        }
-
+        Statement st = createStatement(connection);
 
         String query = "DELETE FROM Game WHERE Name = " + "'" +  gameName + "'";
 
@@ -96,45 +94,15 @@ public class DataBase {
             System.out.println("ExecuteQuery error: " + e.getMessage());
         }
 
-        try {
-
-            // Cerramos la conexiones para no gastar recursos
-            connection.close();
-            st.close();
-
-        } catch (SQLException e) {
-
-            System.err.println("Close error: " + e.getMessage());
-        }
+        closeConnection(connection);
 
     }
 
     public static void showTable() {
 
-        // Conexión con la base de datos
-        String url = "jdbc:mysql://localhost/Game";
-        String user = "root";
-        String password = "1234";
-        Connection connection = null;
+        Connection connection = openConnection();
 
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-
-        } catch (SQLException e) {
-            System.err.println("Connection error: " + e.getMessage());
-        }
-
-        // Creación del Statement
-        Statement st = null;
-
-        try {
-            
-            st = connection.createStatement();
-
-        } catch (SQLException e) {
-
-            System.err.println("Statement error: " + e.getMessage());
-        }
+        Statement st = createStatement(connection);
 
         String query = "SELECT * FROM Game;";
 
@@ -164,14 +132,6 @@ public class DataBase {
             System.err.println("ExecuteQuery error: " + e.getMessage());
         }
 
-        try {
-            // Cerramos la conexiones para no gastar recursos
-            connection.close();
-            st.close();
-
-        } catch (SQLException e) {
-
-            System.err.println("Close error: " + e.getMessage());
-        }
+        closeConnection(connection);
     }
 }
