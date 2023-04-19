@@ -1,4 +1,4 @@
-# JDBC / POOL / JPA
+# JDBC / JDBC POOL / JPA
 
 ## Index
 
@@ -13,7 +13,7 @@
     - [Maven](#maven)
     - [Pom.xml](#pomxml)
     - [Code](#code-1)
-    
+
 - [JPA](#jpa)
 
 
@@ -36,8 +36,8 @@ To carry out the work I have created a very simple database called "Game" which 
 |:--------:|:-----------:|
 |  Game 1  | Year Game 1 |
 
-**Name**: Is a varchar
-**Year**: Is a integer
+- **Name**: Is a varchar
+- **Year**: Is a integer
 
 ---
 
@@ -104,7 +104,6 @@ The pom.xml file describes how the project is built, including information about
 In the pom.xml file we will insert the following dependencies so that the project can be executed:
 
 MySQL driver:
-
 ~~~
 <dependency>
     <groupId>com.mysql</groupId>
@@ -114,7 +113,6 @@ MySQL driver:
 ~~~
 
 HikariCP:
-
 ~~~
 <dependency>
     <groupId>com.zaxxer</groupId>
@@ -124,7 +122,6 @@ HikariCP:
 ~~~
 
 SLF4J:
-
 ~~~
 <dependency>
     <groupId>org.slf4j</groupId>
@@ -132,6 +129,8 @@ SLF4J:
     <version>1.8.0-beta4</version>
 </dependency>
 ~~~
+
+---
 
 ### Code
 
@@ -145,4 +144,100 @@ In the `src` folder we can find the code to insert and delete games from the Gam
 
 It differs from the previous form only in the `DataBase.java` file, since the way in which the connection is made is different.
 
+---
+
 ## JPA
+
+### What is JPA?
+
+JPA provides a way to interact with a database from a Java application in an object-oriented manner, using Java classes and objects instead of SQL statements. JPA integrates with the Java programming language and provides an abstraction layer between the application code and the underlying database, allowing for greater portability and flexibility.
+
+---
+
+### Maven
+
+To perform this part of the project, it is necessary to use **Maven**. If you do not have Maven yet, you need to install it.
+
+To check if it is already installed, you can run the following command:
+
+~~~
+mvn --version
+~~~
+
+If the version is displayed then it is already installed, if we get any error then it is not yet installed and it is necessary to proceed with its installation.
+
+It can be installed by executing the following command:
+
+~~~
+sudo apt install maven
+~~~
+
+---
+
+### Pom.xml
+
+In the pom.xml file we will insert the following dependencies so that the project can be executed:
+
+MySQL driver:
+~~~
+<dependency>
+    <groupId>com.mysql</groupId>
+    <artifactId>mysql-connector-j</artifactId>
+    <version>8.0.32</version>
+</dependency>
+~~~
+
+Persistence:
+~~~
+</dependency>
+    <groupId>jakarta.persistence</groupId>
+    <artifactId>jakarta.persistence-api</artifactId>
+    <version>3.0.0</version>
+</dependency>
+~~~
+
+Hibernate:
+~~~
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-core-jakarta</artifactId>
+    <version>5.6.4.Final</version>
+</dependency>
+~~~
+
+JAXB:
+~~~
+<dependency>
+    <groupId>org.glassfish.jaxb</groupId>
+    <artifactId>jaxb-runtime</artifactId>
+    <version>3.0.0</version>
+</dependency>
+~~~
+
+---
+
+### Persistence.xml
+
+A persistence.xml file is a configuration file used by JPA (Java Persistence API) to define how the persistence layer of a Java application should be configured.
+
+This file is located in the META-INF directory of the application and contains information about the database connection, the JPA persistence provider used, entity classes and configuration properties.
+
+In the persistence.xml file, several persistence units can be defined, each with its own set of configuration properties. Each persistence unit is usually associated with a specific database.
+
+The persistence.xml file is also used to define the application entity classes to be persisted, which is achieved through the "class" tag in the persistence unit definition.
+
+In general, the persistence.xml file is a key element in the configuration of a Java application that uses JPA for data persistence.
+
+---
+
+### Data Base
+
+For this case I have used the same database as in the tutorial, the database is as follows:
+
+| **pl_id** | **pl_name** | **pl_rating** |
+|:---------:|:-----------:|:-------------:|
+|     ID    |     Name    |      Rate     |
+
+---
+
+### Code
