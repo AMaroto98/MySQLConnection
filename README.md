@@ -3,20 +3,23 @@
 ## Index
 
 - [JDBC](#jdbc)
-    - [What is JDBC](#what-is-jdbc)
+    - [What is JDBC?](#what-is-jdbc)
     - [Data Base](#data-base)
     - [Driver](#driver)
     - [Code](#code)
 
 - [JDBC Pool](#jdbc-pool)
-    - [What is JDBC Pool](#what-is-jdbc-pool)
+    - [What is JDBC Pool?](#what-is-jdbc-pool)
     - [Maven](#maven)
     - [Pom.xml](#pomxml)
     - [Code](#code-1)
 
 - [JPA](#jpa)
-
-
+    - [What is JPA?](#what-is-jpa)
+    - [Maven](#maven-1)
+    - [Pom.xml](#pomxml-1)
+    - [Persistence.xml](#persistencexml)
+    - [Code](#code-2)
 
 ---
 
@@ -238,6 +241,18 @@ For this case I have used the same database as in the tutorial, the database is 
 |:---------:|:-----------:|:-------------:|
 |     ID    |     Name    |      Rate     |
 
+- **pl_id**: Is a integer
+- **pl_name**: Is a string
+- **pl_rating**: Is a integer
+
 ---
 
 ### Code
+
+In the `src` folder we can find the code to insert and print programming languages from the jpa_demo database.
+
+- `Application.java`: File where the main program is executed and database inserts are performed.
+- `JPAService.java`: File in which the database connection mode is set.
+- `ProgrammingLanguages.java`: File in which the attributes of a programming language object are set and at the same time the database table is structured.
+
+---
